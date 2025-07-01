@@ -2,32 +2,45 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<unordered_map>
+
+// std::string retStr() {
+//
+// }
 
 int possibleStringCount(std::string word) {
-    int str_num = 0;
+    int str_num = 1;
     std::vector<std::string> str_vec(word.size());
-    int cnt = 0;
 
-    for(int i = 0; i < word.size() - 1; ++i) {
-        str_vec[cnt].push_back(word[i]);
-        if(word[i] != word[i + 1]) {
-            ++cnt;
-            str_vec[cnt].push_back(word[i + 1]);
+    std::vector<std::pair<char, int>> ch_pair;
+
+    int i = 0;
+    while(i < word.size()) {
+        char current = word[i];
+        int count = 0;
+
+        while(i < word.size() && word[i] == current) {
+            count++;
+            i++;
         }
+        ch_pair.push_back({current, count});
     }
 
-    for(const auto& s : str_vec) {
-        std::cout << s << "\n";
+    str_vec.push_back(word);
+
+    for(const auto& group : ch_pair) {
+        for()
     }
 
     return str_num;
 }
 
 int main() {
-    std::string word = "abbcccbbbaaaa";
+    std::string word = "aabbccccaaaabbac";
 
     std::cout << "\n\n" << possibleStringCount(word);
 
     std::cin.get();
 }
+
 
