@@ -4,13 +4,8 @@
 #include<vector>
 #include<unordered_map>
 
-// std::string retStr() {
-//
-// }
-
 int possibleStringCount(std::string word) {
     int str_num = 1;
-    std::vector<std::string> str_vec(word.size());
 
     std::vector<std::pair<char, int>> ch_pair;
 
@@ -26,21 +21,23 @@ int possibleStringCount(std::string word) {
         ch_pair.push_back({current, count});
     }
 
-    str_vec.push_back(word);
-
     for(const auto& group : ch_pair) {
-        for()
+        for(int i = 0; i < group.second - 1; ++i) {
+            ++str_num;
+        }
     }
+
 
     return str_num;
 }
 
 int main() {
-    std::string word = "aabbccccaaaabbac";
+    std::string word = "aaaa";
 
-    std::cout << "\n\n" << possibleStringCount(word);
+    std::cout << possibleStringCount(word);
 
     std::cin.get();
 }
+
 
 
