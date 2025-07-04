@@ -1,15 +1,16 @@
 #include<iostream>
 
 int minimumLength(std::string s) {
+    std::string temp = "";
 
-    for(int i = 1; i < s.size() - 1; ++i) {
-        int right = i;
-        int left = i;
+    for(int i = 1; i < s.size(); ++i) {
+        int right = i + 1;
+        int left = i - 1;
 
-        if(s[i] != s[left - 1]) {
-            if(s[i] == s[right + 1]) {
-                s.erase(s.begin() + i);
-            }
+        if(s[i] == s[left]) {
+        }
+        if(s[i] == s[right]) {
+            s.erase(s.begin() + i);
         }
     }
     return s.size();
