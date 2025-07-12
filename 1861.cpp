@@ -15,9 +15,9 @@ std::vector<std::vector<char>> rotateTheBox(std::vector<std::vector<char>>& boxG
 
 int main() {
     std::vector<std::vector<char>> boxGrid = {
-        {'#','#','*','.','*','.'},
-        {'#','#','#','*','.','.'},
-        {'#','#','#','.','#','.'},
+        {"#","#","*",".","*","."},
+        {"#","#","#","*",".","."},
+        {"#","#","#",".","#","."},
     };
 
     rotateTheBox(boxGrid);
