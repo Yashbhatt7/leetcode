@@ -2,10 +2,13 @@
 #include<vector>
 
 long long minimumDifference(std::vector<int>& nums) {
+    std::vector<int> temp = nums;
     int dif = 0;
     int n = nums.size()/3;
 
-
+    for(int i = 0; i < nums.size(); ++i) {
+        for(int j = )
+    }
 
     return dif;
 }
