@@ -21,8 +21,8 @@ int countCharacters(std::vector<std::string>& words, std::string chars) {
         }
 
         check = true;
-        for(const auto& [ch, count] : wordCount) {
-            if(charCount[ch] < count) {
+        for(const auto& ch : wordCount) {
+            if(charCount[ch.first] < ch.second) {
                 check = false;
                 break;
             }
