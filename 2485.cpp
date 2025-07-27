@@ -2,7 +2,6 @@
 
 int pivotInteger(int n) {
     int sum = 0;
-    int set_i = (n/2) + 1;
     int sum1 = 0;
 
     for(int i = 1; i <= n; ++i) {
