@@ -1,40 +1,35 @@
 #include<iostream>
-#include<map>
+#include<unordered_map>
 #include<vector>
 #include<algorithm>
 
 std::string frequencySort(std::string s) {
     std::string str;
-    std::map<char, int> freq;
 
-    // Count frequency
+    std::unordered_map<char, int> freq;
+
     for (const auto& i : s) {
         ++freq[i];
     }
 
-    // Convert to vector
-    std::vector<std::pair<char, int>> sorted_freq(freq.begin(), freq.end());
+    std::vector<std::pair<char, int>> sort_freq(freq.begin(), freq.end());
 
-    // Sort by frequency in descending order
-    std::sort(sorted_freq.begin(), sorted_freq.end(), [](const auto& a, const auto& b) {
-        return a.second > b.second;
-    });
+    std::sort(sort_freq.begin(), sort_freq.end(),
+              [](const auto& a, const auto& b) {
+              return a.second > b.second;
+              });
 
-    // Build the string
-    for (const auto& [ch, count] : sorted_freq) {
-        str.append(count, ch);  // Add the char `count` times
+    for (const auto& i : sort_freq) {
+        str += std::string(i.second, i.first);
     }
-
-    // Optional: print it
-    std::cout << str << std::endl;
 
     return str;
 }
 
 int main () {
-    std::string s = "kcccaaabbbaaabbbdddbdbdb";
+    std::string s = "Aabb";
 
-    frequencySort(s);
+    std::cout << frequencySort(s);
 
     std::cin.get();
 }
