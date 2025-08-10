@@ -1,39 +1,29 @@
-#include <iostream>
-#include <unordered_map>
-#include <string>
+#include<iostream>
 
-int main() {
-    std::string var = "hello world";
-    std::unordered_map<char, int> count;
+bool reorderedPowerOf2(int n) {
+    int x = n;
 
-    // Count occurrences of each character
-    for (char ch : var) {
-        count[ch]++;
-    }
+    int a = x / 10;
+    x = a % 10;
+    std::cout << "x:" << x << "\n";
+    // int b = 100;
+    std::cout << "a:" << a << "\n";
 
-    // Print initial counts
-    std::cout << "Initial counts:" << std::endl;
-    for (const auto& pair : count) {
-        std::cout << "'" << pair.first << "': " << pair.second << std::endl;
-    }
+    // std::cout << x << "\n";
 
-    // Decrement the count for specific characters
-    char to_decrement = 'l'; // Decrement 'l'
-    if (count.find(to_decrement) != count.end()) { // Check if the key exists
-        count[to_decrement]--; // Decrement the count
-        if (count[to_decrement] == 0) { // Optional: Remove the key if count reaches 0
-            count.erase(to_decrement);
-        }
-    }
-
-    // Print updated counts
-    std::cout << "\nCounts after decrementing 'l':" << std::endl;
-    for (const auto& pair : count) {
-        std::cout << "'" << pair.first << "': " << pair.second << std::endl;
-    }
+    // while (x > 1) {
+    //
+    // }
 
     return 0;
 }
 
+int main() {
+    int n = 421;
+
+    reorderedPowerOf2(n);
+
+    std::cin.get();
+}
 
 
