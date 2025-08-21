@@ -3,23 +3,29 @@
 #include<unordered_map>
 
 int numberOfSubarrays(std::vector<int>& nums, int k) {
-    int m_count = 0;
+    std::unordered_map<int, int> odd_mapping;
     int count = 0;
-
+    int idx = 0;
 
     for (int i = 0; i < nums.size(); ++i) {
-        for (int j = i; j < nums.size(); ++j) {
-            if (nums[j] % 2 != 0) {
-                ++count;
-            }
-            if (count == k) {
-                ++m_count;
-            }
+        if (nums[i] % 2 != 0) {
+            nums[i] = 1;
+        } else {
+            nums[i] = 0;
         }
-        count = 0;
     }
 
-    return m_count;
+    for (int i = 0; i < nums.size(); ++i) {
+        ++odd_mapping[nums[i]];
+
+        if (odd_mapping[1] == k) {
+            ++count;
+            --odd_mapping[nums[idx]];
+            ++idx;
+        }
+    }
+
+    return count;
 }
 
 int main() {
@@ -33,3 +39,4 @@ int main() {
 
     std::cin.get();
 }
+
