@@ -1,23 +1,30 @@
 #include<iostream>
 #include<vector>
+#include<unordered_map>
 
 std::vector<int> twoSum(std::vector<int>& nums, int target) {
+    std::unordered_map<int, int> freq;
     std::vector<int> vec;
 
-    for(int i = 0; i < nums.size() - 1; ++i) {
-        for(int j = i + 1; j < nums.size(); ++j) {
-            if((nums[i] + nums[j]) == target) {
-                vec.push_back(i);
-                vec.push_back(j);
-            }
+    int a = 0;
+    for (const auto& i : nums) {
+        freq[i] = a;
+        ++a;
+    }
+
+    int n = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        int n = target - nums[i];
+        if (freq[n] && freq[n] != i) {
+            return {i, freq[n]};
         }
     }
 
-    return vec;
+    return {};
 }
 
 int main() {
-    std::vector<int> vec { 2, 7, 11, 15 };
+    std::vector<int> vec { 3, 1, 4, 2};
     int target = 9;
 
     std::vector<int> vec2 =  twoSum(vec, target);
