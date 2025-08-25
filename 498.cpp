@@ -40,15 +40,6 @@ std::vector<int> findDiagonalOrder(std::vector<std::vector<int>>& mat) {
             }
             continue;
         }
-
-        if (b) {
-            ++i;
-            --j;
-        }
-        if (a) {
-            ++j;
-            --i;
-        }
     }
 
     return vec;
