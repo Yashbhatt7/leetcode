@@ -16,6 +16,7 @@ std::vector<int> findDiagonalOrder(std::vector<std::vector<int>>& mat) {
 
         // Down
         if (a) {
+            std::cout << "down\n";
             if (i == 0 || j == col - 1) {
                 if (j == col - 1) ++i;
                 else ++j;
@@ -29,6 +30,7 @@ std::vector<int> findDiagonalOrder(std::vector<std::vector<int>>& mat) {
         }
         // up
         if (b) {
+            std::cout << "up\n";
             if (j == 0 || i == row - 1) {
                 if (i == row - 1) ++j;
                 else ++i;
@@ -47,9 +49,9 @@ std::vector<int> findDiagonalOrder(std::vector<std::vector<int>>& mat) {
 
 int main() {
     std::vector<std::vector<int>> mat = {
-        {1, 2, 3, 4, 5},
-        {6, 7, 8, 9, 10},
-        {11, 12, 13, 14, 15},
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 },
     };
 
     std::vector<int> vec = findDiagonalOrder(mat);
