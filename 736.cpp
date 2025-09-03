@@ -3,6 +3,13 @@
 #include<unordered_map>
 #include<memory>
 
+// (let x 2 (mult x (let x 3 y 4 (add x y))))
+//
+// (let x 1 y 2 x (add x y) (add x y))
+// for this look at let here we'll provide x = 1 and y = 2 then check if there is new var or not here in this case its not..
+// here its x (add x y) which means we'll reassign x with the result of first (add x y) then x will become x = 3... then we'll eval last (add x y) here x is
+// already been calculated so it will be result in (add x = 3 y = 2) = 5; we can use peekToken to see if we've used var from previous declaration of var or its new
+
 enum class TokenType {
     Illegal,
     Lparen,
@@ -121,12 +128,6 @@ public:
     }
 };
 
-int evaluate(std::string expression) {
-    auto lexer = std::make_unique<Lexer>(expression);
-    // Parser
-    return 0;
-}
-
 class Eval {
 public:
     std::unique_ptr<Lexer> l;
@@ -158,6 +159,7 @@ public:
     }
 
     int evalLet() {
+        std::cout << "it came to let\n";
         return 0;
     }
 
@@ -170,6 +172,15 @@ public:
     }
 };
 
+int evaluate(std::string expression) {
+    auto lexer = std::make_unique<Lexer>(expression);
+    Eval eval(std::move(lexer));
+
+    eval.evalExpr();
+
+    return 0;
+}
+
 int main() {
     std::string expression = "(let x 2 (mult x (let x 3 y 4 (add x y))))";
 
@@ -180,6 +191,9 @@ int main() {
 
         std::cout << i + 1 << ": " << tok.literal << "\n";
     }
+    std::cout << "\n\n";
+
+    evaluate(expression);
 
     std::cin.get();
 }
