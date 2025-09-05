@@ -44,7 +44,6 @@ public:
     }
 };
 
-// yes we don't need lexer here(brain: you don't know how to solve it without lexer) yeah... true
 class Lexer {
 public:
     std::string input;
@@ -158,9 +157,25 @@ public:
         return res;
     }
 
-    int evalLet() {
-        std::cout << "it came to let\n";
-        return 0;
+    int evalLet() { // (let x 2 (mult x (let x 3 y 4 (add x y))))
+        nextToken();
+        int result = 0;
+        std::vector<int> nums;
+        bool check = false;
+
+        while (curToken.type == TokenType::Ident) {
+            nextToken();
+            if (curToken.type != TokenType::Int) {
+                check = true;
+                break;
+            }
+            nums.push_back(std::stoi(curToken.literal));
+        }
+        if (check) {
+            result = evalExpr();
+        }
+
+        return result;
     }
 
     int evalAdd() {
@@ -168,6 +183,10 @@ public:
     }
 
     int evalMult() {
+        // nextToken();
+
+
+
         return 0;
     }
 };
