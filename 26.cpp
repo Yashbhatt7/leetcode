@@ -1,25 +1,16 @@
 #include<iostream>
-#include<map>
 #include<vector>
+#include<set>
 
 int removeDuplicates(std::vector<int>& nums) {
-    int temp = nums[0];
+    std::set<int> s(nums.begin(), nums.end());
 
-    for(int i = 0; i < nums.size() - 1;) {
-        if(temp == nums[i + 1]) {
-            nums.erase(nums.begin() + i);
-        }
-        else {
-            temp = nums[i + 1];
-            ++i;
-        }
+    nums.clear();
+    for (const auto& i : s) {
+        nums.push_back(i);
     }
 
-    // for(int i : nums) {
-    //     std::cout << i << " ";
-    // }
-
-    return nums.size();
+    return s.size();
 }
 
 int main() {
