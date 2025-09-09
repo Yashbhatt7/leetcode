@@ -1,30 +1,24 @@
 #include<iostream>
+#include<vector>
 
-int climbStairs(int n)
-{
-    if(n <= 3)
-        return n;
+int climbStairs(int n) {
+    std::vector<int> dp(n + 1);
 
-    int fix_a = 2;
-    int fix_b = 3;
+    dp[0] = 1;
+    dp[1] = 1;
 
-    int sum_of_last_two = 0;
-
-    for(int i = 3; i < n; ++i)
-    {
-        sum_of_last_two = fix_a + fix_b;
-        fix_a = fix_b;
-        fix_b = sum_of_last_two;
+    for (int i = 2; i < n + 1; ++i) {
+        dp[i] = dp[i - 1] + dp[i - 2];
     }
-    return sum_of_last_two;
+
+    return dp[n];
 }
 
-int main()
-{
-    int n;
-    std::cin >> n;
+int main() {
+    int n = 2;
 
     std::cout << climbStairs(n);
 
     std::cin.get();
 }
+
