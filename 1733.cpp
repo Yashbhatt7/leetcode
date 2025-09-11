@@ -1,25 +1,9 @@
 #include<iostream>
 #include<vector>
-#include<map>
+#include<unordered_set>
 
 int minimumTeachings(int n, std::vector<std::vector<int>>& languages, std::vector<std::vector<int>>& friendships) {
-    std::map<int, std::vector<int>> userMap;
-
-    int userKey = 1;
-    for (const auto& i : languages) {
-        userMap[userKey] = i;
-        ++userKey;
-    }
-
-    // for (const auto& i : userMap) {
-    //     std::cout << i.first << "-> { ";
-    //     for (const auto& j : i.second) {
-    //         std::cout << j << ", ";
-    //     }
-    //     std::cout << "} \n";
-    // }
-
-
+    std::vector<std::unordered_set<int>> knows(friendships.size());
 
     return 0;
 }
