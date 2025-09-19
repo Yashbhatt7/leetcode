@@ -2,30 +2,25 @@
 #include<vector>
 #include<unordered_map>
 
+int atMost(const std::vector<int>& nums, int k) {
+    int oddCount = 0;
+    int subArrayCount = 0;
+
+    int left = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] % 2 == 1) ++oddCount;
+
+        while (oddCount > k) {
+            if (nums[left] % 2 == 1) --oddCount;
+            ++left;
+        }
+        subArrayCount += i - left + 1;
+    }
+    return subArrayCount;
+}
+
 int numberOfSubarrays(std::vector<int>& nums, int k) {
-    std::unordered_map<int, int> odd_mapping;
-    int count = 0;
-    int idx = 0;
-
-    for (int i = 0; i < nums.size(); ++i) {
-        if (nums[i] % 2 != 0) {
-            nums[i] = 1;
-        } else {
-            nums[i] = 0;
-        }
-    }
-
-    for (int i = 0; i < nums.size(); ++i) {
-        ++odd_mapping[nums[i]];
-
-        if (odd_mapping[1] == k) {
-            ++count;
-            --odd_mapping[nums[idx]];
-            ++idx;
-        }
-    }
-
-    return count;
+    return atMost(nums, k) - atMost(nums, k - 1);
 }
 
 int main() {
