@@ -8,7 +8,7 @@ int minPathSum(std::vector<std::vector<int>>& grid) {
     int r = grid.size();
     int c = grid[0].size();
 
-    std::vector<std::vector<int>> dp(r, std::vector<int>(c, INT_MAX));
+    std::vector<std::vector<int>> dp(r, std::vector<int>(c, 0));
 
     dp[0][0] = grid[0][0];
     for (int i = 1; i < grid[0].size(); ++i) {
@@ -21,7 +21,7 @@ int minPathSum(std::vector<std::vector<int>>& grid) {
 
     for (int i = 1; i < grid.size(); ++i) {
         for (int j = 1; j < grid[0].size(); ++j) {
-            dp[i][j] = std::min(dp[i][j - 1] + grid[i][j], dp[i - 1][j] + grid[i][j]);
+            dp[i][j] = grid[i][j] + std::min(dp[i][j - 1], dp[i - 1][j]);
         }
     }
     return dp[r - 1][c - 1];
