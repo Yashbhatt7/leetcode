@@ -2,19 +2,18 @@
 #include<vector>
 
 int maxSubArray(std::vector<int>& nums) {
-    int Max = nums[0];
-    int curBest = nums[0];
-
+    int maxSum = nums[0];
+    int curBestSum = nums[0];
     for (int i = 1; i < nums.size(); ++i) {
-        curBest = std::max(nums[i], (curBest + nums[i]));
-        Max = std::max(Max, curBest);
+        curBestSum = std::max(nums[i], curBestSum + nums[i]);
+        maxSum = std::max(maxSum, curBestSum);
     }
-
-    return Max;
+    return maxSum;
 }
 
 int main() {
-    std::vector<int> nums = { 5,4,-1,7,8 };
+    // std::vector<int> nums = { 5,4,-1,7,8 };
+    std::vector<int> nums = { -2,1,-3,4,-1,2,1,-5,4 };
 
     std::cout << maxSubArray(nums);
 
