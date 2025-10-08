@@ -1,27 +1,35 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
+#include<unordered_map>
 
 std::vector<int> findErrorNums(std::vector<int>& nums) {
-    std::vector<int> vec;
-    std::sort(nums.begin(), nums.end());
+    std::unordered_map<int, int> freq;
+    int first = -1;
+    int second = -1;
 
-    for (int i = nums[0]; i < nums.size(); ++i) {
-        if (i != nums[i] ) {
-
-            vec.push_back(nums[i]);
-            vec.push_back(nums[i] + 1);
-            break;
-        }
+    for (const auto& i : nums) {
+        ++freq[i];
     }
 
-    return vec;
+    for (int i = 1; i <= nums.size(); ++i) {
+        if (freq[i] == 2) first = i;
+        if (freq[i] == 0) second = i;
+        if (first != -1 && second != -1) break;
+    }
+
+    return {first, second};
 }
 
 int main() {
-    std::vector<int> nums = { 1,3,3 };
+    // std::vector<int> nums = { 1,2,2,4 };
+    std::vector<int> nums = { 2,2 };
 
-    findErrorNums(nums);
+    std::vector<int> vec = findErrorNums(nums);
+
+    std::cout << "\n\nvec: ";
+    for (int i : vec) {
+        std::cout << i << ", ";
+    }
 
     std::cin.get();
 }
